@@ -1,0 +1,39 @@
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<div class="container">
+    <div class="form-box">
+        <h1 id="title">Sign Up</h1>
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+            <div class="input-group">
+                <div class="input-field">
+                    <i class='bx bx-user'></i>
+                    <input type="text" placeholder="User Name" name="username" id="username" ngModel required />
+                    <div *ngIf="form.controls['username'].errors?.['required']" class="error">Please enter user name</div>
+                </div>
+            
+                <div class="input-field">
+                    <i class='bx bx-envelope'></i>
+                    <input type="email" placeholder="Email" name="email" id="email" ngModel required />
+                    <div *ngIf="form.controls['email'].errors?.['required']" class="error">Please enter your email address</div>
+                    <div *ngIf="form.controls['email'].errors?.['email']" class="error">Please enter a valid email address</div>
+                </div>
+            
+                <div class="input-field">
+                    <i class='bx bx-lock-alt'></i>
+                    <input type="password" placeholder="Password" name="password" id="password" ngModel required />
+                    <div *ngIf="form.controls['password'].errors?.['required']" class="error">Please enter your password</div>
+                </div>
+                
+                <div class="input-field">
+                    <i class='bx bx-lock-alt'></i>
+                    <input type="password" placeholder="Confirm Password" name="confirmpassword" id="confirmpassword" ngModel required />
+                    <div *ngIf="form.controls['confirmpassword'].errors?.['required']" class="error">Please enter your password</div>
+                    <div *ngIf="form.controls['confirmpassword'].value !== form.controls['password'].value" class="error">Password and confirm password does not match</div>
+                </div>
+            </div>
+            <div class="btn-field">
+                <button type="submit" id="signupForm">Submit</button>
+                <button type="button" id="signinBtn" (click)="resetForm(form)">Reset</button>
+            </div>
+        </form>
+    </div>
+</div>

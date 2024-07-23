@@ -1,0 +1,27 @@
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<body>
+    <div class="container">
+        <div class="form-box">
+            <h1 class="form-title">Update Password</h1>
+            <form #Form="ngForm" (ngSubmit)="onSubmit(Form)">
+                <div class="input-group">
+                    <div class="input-field">
+                        <i class='bx bx-envelope'></i>
+                        <input type="email" placeholder="Email" name="email" id="email" ngModel required />
+                        <div *ngIf="Form.controls['email'].errors?.['required']" class="error">Please enter your email address</div>
+                        <div *ngIf="Form.controls['email'].errors?.['email']" class="error">Please enter a valid email address</div>
+                    </div>
+                    <div class="input-field">
+                        <i class='bx bx-lock-alt'></i>
+                        <input type="password" placeholder="Password" name="password" id="password" ngModel required />
+                        <div *ngIf="Form.controls['password'].errors?.['required']" class="error">Please enter your password</div>
+                    </div>
+                </div>
+                <div class="btn-field">
+                    <button type="button" (click)="resetForm()">Reset</button>
+                    <button type="submit" id="signinBtn">Confirm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>

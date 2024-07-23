@@ -1,0 +1,55 @@
+<nav class="top-nav">
+    <img [src]="Imagepath" height="130" width="350" alt="Your logo">
+    <ul class="nav-links">
+
+        <li><a routerLink="/admin">Home</a></li>
+        <li><button (click)="remove()">Logout</button></li>
+    </ul>
+</nav>
+<div class="container">
+    <h2>Add User</h2>
+    <form #userForm="ngForm" (ngSubmit)="addUser(userForm)" class="form-item" novalidate>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" [(ngModel)]="username" required minlength="1" maxlength="8">
+      <!-- Display error message for required validation -->
+      <div *ngIf="userForm.controls['username'].errors?.['required'] && (userForm.controls['username'].dirty || userForm.controls['username'].touched)">
+        Username is required.
+      </div>
+      <!-- Display error message for minlength validation -->
+      <div *ngIf="userForm.controls['username'].errors?.['minlength'] && (userForm.controls['username'].dirty || userForm.controls['username'].touched)">
+        Username must be at least 1 character.
+      </div>
+      <!-- Display error message for maxlength validation -->
+      <div *ngIf="userForm.controls['username'].errors?.['maxlength'] && (userForm.controls['username'].dirty || userForm.controls['username'].touched)">
+        Username cannot be longer than 8 characters.
+      </div>
+    
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" [(ngModel)]="email" required email>
+      <!-- Display error message for required and email validation -->
+      <div *ngIf="userForm.controls['email'].errors?.['required'] && (userForm.controls['email'].dirty || userForm.controls['email'].touched)">
+        Email is required.
+      </div>
+      <div *ngIf="userForm.controls['email'].errors?.['email'] && (userForm.controls['email'].dirty || userForm.controls['email'].touched)">
+        Invalid email format.
+      </div>
+    
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" [(ngModel)]="password" required minlength="5" maxlength="8">
+      <!-- Display error message for required and minlength validation -->
+      <div *ngIf="userForm.controls['password'].errors?.['required'] && (userForm.controls['password'].dirty || userForm.controls['password'].touched)">
+        Password is required.
+      </div>
+      <div *ngIf="userForm.controls['password'].errors?.['minlength'] && (userForm.controls['password'].dirty || userForm.controls['password'].touched)">
+        Password must be at least 5 characters.
+      </div>
+      <!-- Display error message for maxlength validation -->
+      <div *ngIf="userForm.controls['password'].errors?.['maxlength'] && (userForm.controls['password'].dirty || userForm.controls['password'].touched)">
+        Password cannot be longer than 8 characters.
+      </div>
+    
+      <button type="submit" [disabled]="userForm.invalid">Add User</button>
+    </form>
+    
+  </div>
+  

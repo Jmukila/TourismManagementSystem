@@ -1,0 +1,35 @@
+
+<nav class="top-nav">
+    <img [src]="Imagepath" height="130" width="350" alt="Your logo">
+    <h1>Welcome {{username}}</h1>
+    <ul class="nav-links">
+
+        <li><a routerLink="/admin">Home</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><button (click)="remove()">Logout</button></li>
+    </ul>
+</nav>
+<table class="styled-table">
+    <thead>
+      <tr>
+        
+        <th>Email</th>
+        <th>Package Name</th>
+        <th>Package Type</th>
+        <th>No of Persons</th>
+        <th>Selected Slot</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of sList">
+        <td>{{ s.email }}</td>
+        <td>{{ s.packageName }}</td>
+        <td>{{ s.packagetype }}</td>
+        <td>{{ s.noofpersons }}</td>
+        <td>{{ s.selectedslot }}</td>
+        <td>{{ s.price }}</td>
+      </tr>
+    </tbody>
+  </table>
+  

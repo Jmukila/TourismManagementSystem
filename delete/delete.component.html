@@ -1,0 +1,21 @@
+<nav class="top-nav">
+    <img [src]="Imagepath" height="130" width="350" alt="Your logo">
+    <h1>Welcome {{username}}</h1>
+    <ul class="nav-links">
+        <li><a routerLink="/admin">Home</a></li>
+        <li><button (click)="remove()">Logout</button></li>
+    </ul>
+</nav>
+<div class="container">
+    <h2>Delete User</h2>
+    <form #userForm="ngForm" (ngSubmit)="deleteUser(userForm)" class="form-item">
+      <label for="userId">Email</label>
+      <input type="email" placeholder="Email" name="email" id="email" ngModel #email="ngModel" appEmailValidator/>
+      <div *ngIf="email.invalid && (email.dirty || email.touched)">
+        <div *ngIf="email.errors?.['required']">Email is required</div>
+        <div *ngIf="email.errors?.['invalidEmail']" class="error-message">Invalid email format</div>
+
+      </div>
+      <button type="submit" [disabled]="!userForm.valid">Deactivate User</button>
+    </form>
+</div>

@@ -1,0 +1,28 @@
+
+<nav class="top-nav">
+  <img [src]="Imagepath" height="130" width="350" alt="Your logo">
+  <h1>Welcome {{username}}</h1>
+  <ul class="nav-links">
+
+      <li><a routerLink="/admin">Home</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><button (click)="remove()">Logout</button></li>
+  </ul>
+</nav>
+<table class="styled-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Password</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of sList">
+        <td>{{ s.username }}</td>
+        <td>{{ s.email }}</td>
+        <td>{{ s.password }}</td>
+      </tr>
+    </tbody>
+  </table>
+  

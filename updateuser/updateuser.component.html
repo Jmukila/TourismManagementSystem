@@ -1,0 +1,42 @@
+<nav class="top-nav">
+    <img [src]="Imagepath" height="130" width="350" alt="Your logo">
+    <h1>Welcome {{user1}}</h1>
+    <ul class="nav-links">
+        <li><a routerLink="/admin">Home</a></li>
+        <li><button (click)="remove()">Logout</button></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <form class="form-item" #userForm="ngForm">
+        <label for="userId">Email</label>
+    <input type="email" placeholder="Email" name="email" id="email" [(ngModel)]="email" #emailInput="ngModel" appEmailValidator/>
+    <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">
+        <div *ngIf="emailInput.errors?.['required']">Email is required</div>
+        <div *ngIf="emailInput.errors?.['invalidEmail']" class="error-message">Invalid email format</div>
+    </div>
+
+    <button type="submit" (click)="fetchUserDetails()">Fetch user</button>
+
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" [(ngModel)]="username" [readonly]="!isFetched" #usernameInput="ngModel"
+            required minlength="5" maxlength="8">
+        <div *ngIf="usernameInput.invalid && (usernameInput.dirty || usernameInput.touched)">
+            <div *ngIf="usernameInput.errors?.['required']">Username is required</div>
+            <div *ngIf="usernameInput.errors?.['minlength']">Username must be at least 5 characters long</div>
+            <div *ngIf="usernameInput.errors?.['maxlength']">Username cannot be more than 8 characters long</div>
+        </div>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" [readonly]="!isFetched" #passwordInput="ngModel"
+            required minlength="5" maxlength="8">
+        <div *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)">
+            <div *ngIf="passwordInput.errors?.['required']">Password is required</div>
+            <div *ngIf="passwordInput.errors?.['minlength']">Password must be at least 5 characters long</div>
+            <div *ngIf="passwordInput.errors?.['maxlength']">Password cannot be more than 8 characters long</div>
+        </div>
+
+        <button type="submit" (click)="updateUser()" [disabled]="userForm.invalid || !isFetched">Update User</button>
+    </form>
+</div>

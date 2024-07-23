@@ -1,0 +1,31 @@
+<nav class="top-nav">
+    <img [src]="Imagepath" height="130" width="350" alt="Your logo">
+    <h1>Welcome {{user1}}</h1>
+    <ul class="nav-links">
+        <li><a routerLink="/admin">Home</a></li>
+        <li><button (click)="remove()">Logout</button></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <form class="form-item" #userForm="ngForm">
+        <label for="userId">Email</label>
+    <input type="email" placeholder="Email" name="email" id="email" [(ngModel)]="email" #emailInput="ngModel" appEmailValidator/>
+    <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">
+        <div *ngIf="emailInput.errors?.['required']">Email is required</div>
+        <div *ngIf="emailInput.errors?.['invalidEmail']" class="error-message">Invalid email format</div>
+    </div>
+
+    <button type="submit" (click)="fetchUserDetails()">Fetch user</button>
+
+
+        <label for="packagetype">Package Type:</label>
+        <input type="text" id="packagetype" name="packagetype" [(ngModel)]="packagetype" [readonly]="!isFetched" #packagetypeInput="ngModel"
+            required minlength="4" maxlength="8">
+        <div *ngIf="packagetypeInput.invalid && (packagetypeInput.dirty || packagetypeInput.touched)">
+            <div *ngIf="packagetypeInput.errors?.['required']"> *required</div>
+        </div>
+
+        <button type="submit" (click)="updateUser1()" [disabled]="userForm.invalid || !isFetched">Update User</button>
+    </form>
+</div>
